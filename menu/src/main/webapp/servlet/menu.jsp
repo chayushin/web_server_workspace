@@ -61,7 +61,7 @@
 </table>
 <br /><br />
 
-<form name="menuFrm" action="/menu/menuOrder.do" method="post">
+<form name="menuFrm" action="${pageContext.request.contextPath}/menuOrder.do" method="post">
     <label for="mainMenu">메인메뉴 :</label>
     <select id="mainMenu" name="mainMenu" required>
         <option value="" disabled selected>햄버거를 선택하세요.</option>
