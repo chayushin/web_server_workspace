@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="menu" />
         <module name="hello-web" />
+        <module name="menu" />
+        <module name="hello-mvc" />
+        <module name="mybatis" />
       </profile>
     </annotationProcessing>
   </component>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/menu/menu.iml" filepath="$PROJECT_DIR$/menu/menu.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/web_server_workspace.iml" filepath="$PROJECT_DIR$/.idea/web_server_workspace.iml" />
     </modules>
   </component>

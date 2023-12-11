@@ -38,7 +38,7 @@
     System.out.println(sum);
     long millis = System.currentTimeMillis();
 
-    // context객체에 속성으로 대입
+    // context객체에 속성으로 대입 -> EL
     pageContext.setAttribute("sum", sum);
     pageContext.setAttribute("millis", millis);
 %>

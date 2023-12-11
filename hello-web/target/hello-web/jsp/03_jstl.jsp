@@ -60,10 +60,11 @@
         </thead>
         <tbody>
                 <%--
-                    vs.index : 0-based index
-                    vs.count : 1-based index
-                    vs.first : 첫번째 요소여부
-                    vs.last : 마지막 요소 여부
+                    varStatus : 반복상태를 관리하는 객체 이름 지정
+                    - vs.index : int 0-based index
+                    - vs.count : int 1-based index
+                    - vs.first : boolean 첫번째 요소여부
+                    - vs.last : boolean 마지막 요소 여부
                 --%>
             <c:forEach items="${hobbies}" var="h" varStatus="vs">
                 <tr>
@@ -92,7 +93,10 @@
             <fmt:formatNumber value="${no1}" pattern="#,###"/>
         </li>
         <li>
+            <%-- # 해당자리수가 없으면 공란처리 --%>
+            <%-- 0 해당자리수가 없으면 0처리 --%>
             <fmt:formatNumber value="${no2}" pattern="#.#"/> <%-- 특정자리수 까지 반올림 처리--%>
+            <fmt:formatNumber value="${no2}" pattern="#.000"/> <%-- 특정자리수 까지 반올림 처리--%>
         </li>
         <li>
             <fmt:formatDate value="${today}" pattern = "yy/MM/dd(E) HH:mm:ss"/>

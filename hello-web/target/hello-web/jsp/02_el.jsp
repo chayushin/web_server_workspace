@@ -1,18 +1,18 @@
 <%--
     EL 내장객체
-    - context 객체속성 (생략가능, 생략시, page-request-session-application 순으로 조회)
+    - context 객체속성(맵) (생략가능, 생략시, page-request-session-application 순으로 조회)
         - pageScope
         - requestScope
         - sessionScope
         - applicationScope
-    - 사용자 입력값
+    - 사용자 입력값(맵)
         - param
         - paraValues
-    - header 정보
+    - header 정보(맵)
         - header
         - headerValues
-    - 쿠키 cookie
-    - PageContext객체 직접 접근
+    - 쿠키 cookie(맵)
+    - pageContext PageContext객체 직접 접근 (포인터) : ${pageContext.request.contextPath}
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

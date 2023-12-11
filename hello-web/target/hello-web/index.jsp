@@ -41,6 +41,7 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/jstl.do?name=아이패드&option=red&option=128">JSTL</a>
 		</li>
+		<li><a href="${pageContext.request.contextPath}/jspTest.do">@실습문제 JSP</a></li>
 	</ul>
 </body>
 </html>
