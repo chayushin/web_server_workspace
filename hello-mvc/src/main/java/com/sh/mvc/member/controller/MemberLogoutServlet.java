@@ -25,6 +25,6 @@ public class MemberLogoutServlet extends HttpServlet {
             session.invalidate();
 
         // 인덱스페이지로 이동 (url변경)
-        resp.sendRedirect(req.getContextPath());
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

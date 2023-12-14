@@ -65,7 +65,8 @@
             gender = #{gender},
             birthday = #{birthday},
             email = #{email},
-            phone = #{phone}
+            phone = #{phone},
+            hobby = #{hobby, typeHandler=listStringTypeHandler}
         where
             id = #{id}
     </update>

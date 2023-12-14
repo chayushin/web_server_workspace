@@ -16,50 +16,57 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/member/memberRegister")
-public class MemberRegisterServlet extends HttpServlet {
+@WebServlet("/member/memberUpdate")
+public class MemberUpdateServlet extends HttpServlet {
     private MemberService memberService = new MemberService();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/member/memberRegister.jsp").forward(req, resp);
-    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         // 1. 인코딩처리
-        //req.setCharacterEncoding("utf-8");
+//        req.setCharacterEncoding("utf-8");
 
         // 2. 사용자입력값 가져오기
         // id, password, name, birthday, email, phone, gender, hobby
-        String id = req.getParameter("id");
-        String password = req.getParameter("password");
+//        String id = req.getParameter("id");
+        Member loginMember = (Member)req.getSession().getAttribute("loginMember");
+        String id = loginMember.getId();
         String name = req.getParameter("name");
         String _birthday = req.getParameter("birthday");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String _gender = req.getParameter("gender");
         String[] _hobby = req.getParameterValues("hobby");
-        System.out.println(id + ", " + password + ", " + name + ", " + _birthday + ", " + email + ", " + phone + ", " + _gender + ", " + _hobby);
+        System.out.println(id + ", " + name + ", " + _birthday + ", " + email + ", " + phone + ", " + _gender + ", " + _hobby);
 
+
+        // input:date는 text계열이라 작성하지 않아도 ""이 전송
         LocalDate birthday = _birthday != null && !"".equals(_birthday)?
                 LocalDate.parse(_birthday, DateTimeFormatter.ISO_DATE) :
                 null;
         Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
         List<String> hobby = _hobby != null ? Arrays.asList(_hobby) : null;
 
-        Member member = new Member(id, password, name, Role.U, gender, birthday, email, phone, hobby, 0, null);
-        System.out.println(member);
 
         // 3. 업무로직
-        int result = memberService.insertMember(member);
+        Member member = memberService.findById(id);
+        System.out.println(member);
+        member.setName(name);
+        member.setBirthday(birthday);
+        member.setEmail(email);
+        member.setPhone(phone);
+        member.setGender(gender);
+        member.setHobby(hobby);
 
-        // 리다이렉트후 경고창으로 성공메세지 전달
-        req.getSession().setAttribute("msg", "✨✨ 회원가입 축하드립니다. 🎉🎉");
 
-        // 4. view(forward) | redirect
-        resp.sendRedirect(req.getContextPath() + "/");
-
-
+        int result = memberService.updateMember(member);
+        // db정보가 성공적으로 수정되었다명, 해당내용으로 session속성 loginMember업데이트
+        Member memberUpdated = memberService.findById(id);
+        req.getSession().setAttribute("loginMember", memberUpdated);
+//      4. redirect : /mvc/member/memberDetail
+        resp.sendRedirect(req.getContextPath() + "/member/memberDetail");
     }
 }

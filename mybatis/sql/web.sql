@@ -23,10 +23,13 @@ create table member(
     point number default 1000,
     reg_date date default sysdate,
     constraints pk_member_id primary key(id),
+    constraints uq_member_email unique(email),
     constraints ck_member_gender check(gender in ('M', 'F')),
     constraints ck_member_role check(role in ('U', 'A')),
     constraints ck_member_point check(point >= 0)
 );
+alter table member
+add constraints uq_member_email unique(email);
 
 insert into member 
 values('abcde','1234','아무개','U','M', to_date('20000909','yyyymmdd'), 'abcde@naver.com', '01012340909', '운동,등산,독서', default, default);

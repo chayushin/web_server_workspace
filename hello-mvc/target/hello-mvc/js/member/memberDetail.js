@@ -28,60 +28,16 @@ hobbyEtc.addEventListener('blur', (e) => {
 
 });
 
-
 /**
- * 회원가입 유효성검사
+ * 회원정보 수정 유효성검사
  */
-document.memberRegisterFrm.addEventListener('submit', (e) => {
+document.memberUpdateFrm.addEventListener('submit', (e) => {
     const frm = e.target;
-    const id = frm.id;
-    const password = frm.password;
-    const confirmPassword = document.querySelector("#confirm-password");
     const name = frm.name;
     const email = frm.email;
 
 
-    // 아이디 - 영문자/숫자 4글자이상
-    if(!/^\w{4,}$/.test(id.value)) {
-        alert('아이디는 영문자/숫자 4글자이상 작성해주세요...');
-        e.preventDefault();
-        return;
-    }
 
-    // 비밀번호 - 영문자/숫자/특수문자!@#$% 4글자이상
-    const regExps = [
-        {
-            re: /[A-Za-z]/,
-            msg: '비밀번호는 영문자를 하나이상 포함해주세요'
-        },
-        {
-            re:/\d/,
-            msg: '비밀번호는 숫자를 하나이상 포함해주세요'
-        },
-        {
-            re: /[!@#$%]/,
-            msg: '비밀번호는 특수문자!@#$% 중에 하나를 포함해주세요'
-        },
-        {
-            re: /^.{4,}$/,
-            mgs: '비밀번호는 4글자 이상 작성해주세요.'
-        }
-    ];
-    for(let i = 0; i < regExps.length; i++){
-        const {re, msg} = regExps[i];
-        if(!re.test(password.value)) {
-            alert(msg);
-            e.preventDefault();
-            return;
-        }
-    }
-
-    // 비밀번호확인
-    if(password.value !== confirmPassword.value) {
-        alert('두 비밀번호가 다릅니다.');
-        e.preventDefault();
-        return;
-    }
     // 이름 한글2글자 이상
     if(!/^[가-힣]{2,}$/.test(name.value)) {
         alert('이름은 한글 2글자 이상 작성하세요.');

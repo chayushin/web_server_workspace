@@ -21,6 +21,7 @@ hobbyEtc.addEventListener('blur', (e) => {
         // - afterbegin 시작태그뒤. 첫 자식요소로 추가
         // - beforeend 종료태그앞. 마지막 자식요소로 추가
         // - afterend 종료태그뒤. 다음 형제요소로 추가
+        // label#hobby-etc를 감싼 div 태그
         e.target.parentElement.insertAdjacentHTML('beforebegin', html);
         e.target.innerHTML = '직접입력';
     }
