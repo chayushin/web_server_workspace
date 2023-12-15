@@ -92,5 +92,36 @@
         where
             id = #{id}
     </delete>
+    <!-- 식별자(컬럼, 테이블명) 작성시 ${} 문법을 사용할 것. -->
+    <select id="searchMember" resultType="member">
+        select
+            *
+        from
+            member
+        where
+            ${searchType} like '%' || #{searchKeyword} || '%'
+    </select>
+    <select id="findAllPage" resultType="member">
+        select
+            *
+        from
+            member
+        order by
+            reg_date desc
+    </select>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            member
+    </select>
+    <select id="getTotalCount2" resultType="_int">
+        select
+            count(*)
+        from
+            member
+        where
+            ${searchType} like '%' || #{searchKeyword} || '%'
+    </select>
 
 </mapper>
